@@ -1,8 +1,23 @@
 import React from 'react';
-import { Text } from 'react-native';
+import { PersistGate } from 'redux-persist/integration/react';
+import { Provider } from 'react-redux';
+import { StatusBar } from 'react-native';
+import { NavigationContainer } from '@react-navigation/native';
 
-// import { Container } from './styles';
+import './config/ReactotronConfig';
 
-export default function src() {
-  return <Text>Hello GoBarber</Text>;
+import { store, persistor } from './store';
+import App from './App';
+
+export default function Index() {
+  return (
+    <Provider store={store}>
+      <PersistGate persistor={persistor}>
+        <NavigationContainer>
+          <StatusBar barStyle="light-content" backgroundColor="#7159c1" />
+          <App />
+        </NavigationContainer>
+      </PersistGate>
+    </Provider>
+  );
 }
