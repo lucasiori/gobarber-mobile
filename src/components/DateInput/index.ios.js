@@ -1,6 +1,6 @@
 import React, { useState, useMemo } from 'react';
 import PropTypes from 'prop-types';
-import { DatePickerIOS } from 'react-native';
+import DatePicker from '@react-native-community/datetimepicker';
 import { format } from 'date-fns';
 import pt from 'date-fns/locale/pt';
 
@@ -24,13 +24,19 @@ export default function DateInput({ date, onChange }) {
 
         {opened && (
           <Picker>
-            <DatePickerIOS
-              date={date}
-              onDateChange={onChange}
+            <DatePicker
+              value={date}
               minimumDate={new Date()}
               minuteInterval={60}
               locale="pt"
               mode="date"
+              onChange={(event, selectedDate) => {
+                if (selectedDate) {
+                  onChange(selectedDate);
+                }
+
+                setOpened(false);
+              }}
             />
           </Picker>
         )}

@@ -1,4 +1,5 @@
 import React from 'react';
+import PropTypes from 'prop-types';
 import { createStackNavigator } from '@react-navigation/stack';
 
 import Dashboard from './Dashboard';
@@ -8,7 +9,7 @@ import SignUp from '~/pages/SignUp';
 
 const { Navigator, Screen } = createStackNavigator();
 
-export default function Routes(signed = false) {
+export default function Routes({ signed }) {
   return (
     <Navigator
       screenOptions={{
@@ -36,3 +37,11 @@ export default function Routes(signed = false) {
     </Navigator>
   );
 }
+
+Routes.propTypes = {
+  signed: PropTypes.bool,
+};
+
+Routes.defaultProps = {
+  signed: false,
+};

@@ -8,11 +8,11 @@ import DateInput from '~/components/DateInput';
 
 import { Container, HoursList, Hour, Title } from './styles';
 
-export default function SelectDateTime({ navigation }) {
+export default function SelectDateTime({ route, navigation }) {
   const [date, setDate] = useState(new Date());
   const [hours, setHours] = useState([]);
 
-  const provider = navigation.getParam('provider');
+  const { provider } = route.params;
 
   useEffect(() => {
     async function loadAvailable() {
@@ -56,8 +56,14 @@ export default function SelectDateTime({ navigation }) {
 }
 
 SelectDateTime.propTypes = {
+  route: PropTypes.shape({
+    params: PropTypes.shape({
+      provider: PropTypes.shape({
+        id: PropTypes.number.isRequired,
+      }),
+    }).isRequired,
+  }).isRequired,
   navigation: PropTypes.shape({
-    getParam: PropTypes.func.isRequired,
     navigate: PropTypes.func.isRequired,
   }).isRequired,
 };

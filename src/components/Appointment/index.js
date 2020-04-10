@@ -52,7 +52,7 @@ Appointment.propTypes = {
       name: PropTypes.string.isRequired,
     }).isRequired,
     cancelable: PropTypes.bool.isRequired,
-    canceled_at: PropTypes.string.isRequired,
+    canceled_at: PropTypes.string,
   }).isRequired,
   onCancel: PropTypes.func.isRequired,
 };

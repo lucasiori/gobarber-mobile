@@ -1,5 +1,4 @@
 import React, { useEffect, useState } from 'react';
-import { useFocusEffect } from '@react-navigation/native';
 
 import api from '~/services/api';
 
@@ -21,12 +20,8 @@ export default function Dashboard() {
     loadAppointments();
   }, []);
 
-  useFocusEffect(() => {
-    loadAppointments();
-  }, []);
-
   async function handleCancel(id) {
-    const response = await api.delete(`appointment/${id}`);
+    const response = await api.delete(`appointments/${id}`);
 
     setAppointments(
       appointments.map((appointment) =>
@@ -45,9 +40,11 @@ export default function Dashboard() {
         <List
           data={appointments}
           keyExtractor={(appointment) => String(appointment.id)}
-          renderItem={({ item }) => (
-            <Appointment onCancel={() => handleCancel(item.id)} data={item} />
-          )}
+          renderItem={({ item }) =>
+            !item.canceled_at ? (
+              <Appointment onCancel={() => handleCancel(item.id)} data={item} />
+            ) : null
+          }
         />
       </Container>
     </Background>

@@ -45,6 +45,8 @@ export function* signUp({ payload }) {
       email,
       password,
     });
+
+    Alert.alert('Sucesso', 'Cadastro criado com sucesso');
   } catch (err) {
     Alert.alert(
       'Falha no cadastro',

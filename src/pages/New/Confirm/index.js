@@ -9,9 +9,8 @@ import Background from '~/components/Background';
 
 import { Container, Avatar, Name, Time, SubmitButton } from './styles';
 
-export default function Confirm({ navigation }) {
-  const provider = navigation.getParam('provider');
-  const time = navigation.getParam('time');
+export default function Confirm({ route, navigation }) {
+  const { provider, time } = route.params;
 
   const dateFormatted = useMemo(
     () => formatRelative(parseISO(time), new Date(), { locale: pt }),
@@ -51,8 +50,19 @@ export default function Confirm({ navigation }) {
 }
 
 Confirm.propTypes = {
+  route: PropTypes.shape({
+    params: PropTypes.shape({
+      provider: PropTypes.shape({
+        id: PropTypes.number.isRequired,
+        avatar: PropTypes.shape({
+          url: PropTypes.string.isRequired,
+        }),
+        name: PropTypes.string.isRequired,
+      }),
+      time: PropTypes.string,
+    }).isRequired,
+  }).isRequired,
   navigation: PropTypes.shape({
-    getParam: PropTypes.func.isRequired,
     navigate: PropTypes.func.isRequired,
   }).isRequired,
 };

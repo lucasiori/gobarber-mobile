@@ -18,6 +18,7 @@ function TabBarIcon({ color, name }) {
 export default function DashboardRoutes() {
   return (
     <Navigator
+      screenOptions={{ unmountOnBlur: true }}
       tabBarOptions={{
         keyboardHidesTabBar: true,
         activeTintColor: '#fff',
