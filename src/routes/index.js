@@ -14,6 +14,7 @@ export default function Routes(signed = false) {
       screenOptions={{
         cardStyle: { backgroundColor: '#7159c1' },
         headerShown: false,
+        headerTitleAlign: 'center',
       }}
     >
       {signed && <Screen name="Dashboard" component={Dashboard} />}

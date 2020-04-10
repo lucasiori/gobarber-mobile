@@ -7,6 +7,8 @@ import Icon from 'react-native-vector-icons/MaterialIcons';
 import Dashboard from '~/pages/Dashboard';
 import Profile from '~/pages/Profile';
 
+import New from './New';
+
 const { Navigator, Screen } = createBottomTabNavigator();
 
 function TabBarIcon({ color, name }) {
@@ -32,6 +34,21 @@ export default function DashboardRoutes() {
         options={{
           tabBarLabel: 'Agendamentos',
           tabBarIcon: (props) => <TabBarIcon {...props} name="event" />,
+        }}
+      />
+
+      <Screen
+        name="New"
+        component={New}
+        options={{
+          tabBarVisible: false,
+          tabBarLabel: 'Agendar',
+          tabBarIcon: () => (
+            <TabBarIcon
+              color="rgba(255, 255, 255, 0.6)"
+              name="add-circle-outline"
+            />
+          ),
         }}
       />
 

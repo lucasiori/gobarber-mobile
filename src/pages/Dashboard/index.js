@@ -1,4 +1,5 @@
 import React, { useEffect, useState } from 'react';
+import { useFocusEffect } from '@react-navigation/native';
 
 import api from '~/services/api';
 
@@ -10,13 +11,17 @@ import { Container, Title, List } from './styles';
 export default function Dashboard() {
   const [appointments, setAppointments] = useState([]);
 
+  async function loadAppointments() {
+    const response = await api.get('appointments');
+
+    setAppointments(response.data);
+  }
+
   useEffect(() => {
-    async function loadAppointments() {
-      const response = await api.get('/appointments');
+    loadAppointments();
+  }, []);
 
-      setAppointments(response.data);
-    }
-
+  useFocusEffect(() => {
     loadAppointments();
   }, []);
 
