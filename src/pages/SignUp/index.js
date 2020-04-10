@@ -12,7 +12,7 @@ import {
   Container,
   Form,
   FormInput,
-  SubmitButon,
+  SubmitButton,
   SignLink,
   SignLinkText,
 } from './styles';
@@ -73,9 +73,9 @@ export default function SignUp({ navigation }) {
             onChangeText={setPassword}
           />
 
-          <SubmitButon loading={loading} onPress={handleSubmit}>
+          <SubmitButton loading={loading} onPress={handleSubmit}>
             Criar Conta
-          </SubmitButon>
+          </SubmitButton>
         </Form>
 
         <SignLink onPress={() => navigation.navigate('SignIn')}>
